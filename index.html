@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thailand Couple's Itinerary ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Welcome Screen */
+        #welcomeScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .welcome-content {
+            max-width: 500px;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .welcome-content h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .welcome-content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        #enterBtn {
+            background: white;
+            color: #ff1493;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        #enterBtn:hover {
+            transform: scale(1.05);
+            background: #ffe6e6;
+        }
+        
+        /* Main Content */
+        #mainContent {
+            display: none;
+            padding-bottom: 80px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .countdown {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .itinerary-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .day-card {
+            background: white;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #ff69b4;
+        }
+        
+        .day-card h2 {
+            color: #ff1493;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .day-card ul {
+            list-style: none;
+        }
+        
+        .day-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .day-card li:before {
+            content: '💕 ';
+            margin-right: 10px;
+        }
+        
+        .day-card li:last-child {
+            border-bottom: none;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .welcome-content {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            .welcome-content h1 {
+                font-size: 1.6em;
+            }
+            
+            .welcome-content p {
+                font-size: 1.1em;
+            }
+            
+            header h1 {
+                font-size: 1.6em;
+            }
+            
+            .day-card {
+                padding: 20px;
+                margin: 15px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen">
+        <div class="welcome-content">
+            <h1>Hey Mme Sweetheart! 🇹🇭</h1>
+            <p>We are heading to Thailand Phuket finally! I am so excited and happy that I will be having my first International Trip with you ❤️</p>
+            <button id="enterBtn">View Our Itinerary</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+        <header>
+            <h1>🇹🇭 Thailand Couple's Itinerary ❤️</h1>
+            <div class="countdown">Flight Countdown: <span id="timer">Loading...</span></div>
+        </header>
+
+        <div class="itinerary-container">
+            <div class="day-card">
+                <h2>7 November 2025 (Friday) – Departure Day ✈️</h2>
+                <ul>
+                    <li>Departure day Yay! Johannesburg OR Tambo</li>
+                </ul>
+            </div>
+
+            <div class="day-card">
+                <h2>8 November 2025 (Saturday) – Journey Continues 🌺</h2>
+                <ul>
+                    <li>Stop 1: Singapore Airport for 6 hours</li>
+                    <li>Visit the famous Jewel at Changi Airport Terminal 2</li>
+                    <li>Stop 2: Destination – Phuket Airport</li>
+                    <li>Airport transfer to hotel (look for driver holding Luxury Escape sign)</li>
+                    <li>Hotel – Beyond Kata Resort</li>
+                    <li>Check in, have dinner & rest</li>
+                </ul>
+            </div>
+
+            <div class="day-card">
+                <h2>9 November 2025 (Sunday) – Phuket Tour & Market 🌴</h2>
+                <ul>
+                    <li>Morning Glory 🌸 – first one in Thailand</li>
+                    <li>Have breakfast early</li>
+                    <li>Dress nice – outfits should complement each other</li>
+                    <li>Activity 1 – Phuket Tour & Exploring (Booked)</li>
+                    <li>Activity 2 – Phuket Sunday Night Market</li>
+                    <li>End of Day 1: Do not fight 😄 Finish the day with love ❤️</li>
+                </ul>
+            </div>
+
+            <div class="day-card">
+                <h2>10 November 2025 (Monday) – Chill & Exam Day 📘</h2>
+                <ul>
+                    <li>Relax at the resort until exams are over</li>
+                    <li>Do not miss breakfast</li>
+                    <li>2nd Morning Glory in Thailand 🌅</li>
+                    <li>Explore the resort and beach area until exam time</li>
+                    <li>After exam: choose between Patong Beach or Bangla Road</li>
+                </ul>
+            </div>
+
+            <div class="day-card">
+                <h2>11 November 2025 (Tuesday) – Beach Hopping 🏖️</h2>
+                <ul>
+                    <li>Spend the day together at Banana Beach</li>
+                    <li>Plan and do something you both love</li>
+                    <li>Ntate Sweetheart – lead with love & make mutual decisions ❤️</li>
+                </ul>
+            </div>
+
+            <div class="day-card">
+                <h2>12 November 2025 (Wednesday) – Phi Phi Island Adventure ⛵</h2>
+                <ul>
+                    <li>Pack essentials – sunscreen, camera, swimwear</li>
+                    <li>Dress nicely for island pictures</li>
+                    <li>Full day trip exploring Phi Phi Islands</li>
+                </ul>
+            </div>
+
+            <div class="day-card">
+                <h2>13 November 2025 (Thursday) – Self Exploration ☕</h2>
+                <ul>
+                    <li>Visit Hidden Café Phuket, Café Phuket Viewpoint & The Commune Cliffside Café</li>
+                    <li>Optional: Zipline or other fun activities</li>
+                </ul>
+            </div>
+
+            <div class="day-card">
+                <h2>14 November 2025 (Friday) – Spa & Reflection Day 💆‍♀️</h2>
+                <ul>
+                    <li>Morning Spa Session – 30 minutes</li>
+                    <li>Find something to do together during the day</li>
+                    <li>Dinner date at Three Monkeys Restaurant 🍽️</li>
+                    <li>Dress beautifully & end the night on a high note 💞</li>
+                </ul>
+            </div>
+
+            <div class="day-card">
+                <h2>15 November 2025 (Saturday) – Farewell & Departure 😢</h2>
+                <ul>
+                    <li>Trip is over but memories last forever ❤️</li>
+                    <li>Head to Phuket Airport by 14:15 for flight back to South Africa 🇿🇦</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            With Eternal Love – Ntate Sweethear ❤️ & Mme Sweetheart ❤️ | Thailand 2025
+        </footer>
+    </div>
+
+    <script>
+        // Welcome Screen Functionality
+        document.getElementById('enterBtn').addEventListener('click', function() {
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('2025-11-07T19:55:00+02:00').getTime();
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            if (distance < 0) {
+                document.getElementById('timer').innerHTML = "✈️ It's flight time! Safe travels! ❤️";
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('timer').innerHTML = 
+                days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Floating hearts effect
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.opacity = '0.7';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '9999';
+            heart.style.animation = `floatUp ${Math.random() * 3 + 3}s linear forwards`;
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Add CSS for floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+                100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Create hearts occasionally
+        setInterval(createHeart, 1000);
+    </script>
+</body>
+</html>
