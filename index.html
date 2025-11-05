@@ -53,8 +53,15 @@
         
         .welcome-content p {
             font-size: 1.2em;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             line-height: 1.5;
+        }
+        
+        .countdown-text {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #ffe6e6;
         }
         
         #enterBtn {
@@ -68,6 +75,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 10px;
         }
         
         #enterBtn:hover {
@@ -148,6 +156,41 @@
             font-weight: bold;
         }
         
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 12px 18px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 100;
+        }
+        
+        .music-btn {
+            background: #ff69b4;
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .music-info {
+            font-size: 0.9em;
+            color: #ff1493;
+            font-weight: bold;
+        }
+        
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .welcome-content {
@@ -171,6 +214,12 @@
                 padding: 20px;
                 margin: 15px 10px;
             }
+            
+            .music-player {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 15px;
+            }
         }
     </style>
 </head>
@@ -180,7 +229,8 @@
         <div class="welcome-content">
             <h1>Hey Mme Sweetheart! 🇹🇭</h1>
             <p>We are heading to Thailand Phuket finally! I am so excited and happy that I will be having my first International Trip with you ❤️</p>
-            <button id="enterBtn">View Our Itinerary</button>
+            <div class="countdown-text">Showing our itinerary in <span id="welcomeTimer">10</span> seconds...</div>
+            <button id="enterBtn">Skip & View Now</button>
         </div>
     </div>
 
@@ -279,19 +329,62 @@
             </div>
         </div>
 
+        <!-- Music Player -->
+        <div class="music-player">
+            <button class="music-btn" id="playBtn">▶️</button>
+            <div class="music-info">Mark Twain - You're Still The One</div>
+        </div>
+
         <footer>
-            With Eternal Love – Ntate Sweethear ❤️ & Mme Sweetheart ❤️ | Thailand 2025
+            With Eternal Love – Ntate Sweetheart ❤️ &  Mme Sweetheart ❤️ | Thailand 2025
         </footer>
     </div>
 
+    <!-- Audio Element -->
+    <audio id="backgroundMusic" loop>
+        <!-- Using a reliable royalty-free romantic music source -->
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+        <!-- Fallback music source -->
+        <source src="https://assets.codepen.io/1523470/romantic-piano.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
-        // Welcome Screen Functionality
-        document.getElementById('enterBtn').addEventListener('click', function() {
-            document.getElementById('welcomeScreen').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
+        // Welcome Screen Countdown
+        let welcomeCountdown = 10;
+        const welcomeTimerEl = document.getElementById('welcomeTimer');
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const mainContent = document.getElementById('mainContent');
+        const enterBtn = document.getElementById('enterBtn');
+
+        // Start the welcome countdown
+        const welcomeInterval = setInterval(function() {
+            welcomeCountdown--;
+            welcomeTimerEl.textContent = welcomeCountdown;
+            
+            if (welcomeCountdown <= 0) {
+                clearInterval(welcomeInterval);
+                showMainContent();
+            }
+        }, 1000);
+
+        // Skip button functionality
+        enterBtn.addEventListener('click', function() {
+            clearInterval(welcomeInterval);
+            showMainContent();
         });
 
-        // Countdown Timer
+        function showMainContent() {
+            welcomeScreen.style.display = 'none';
+            mainContent.style.display = 'block';
+            
+            // Start music when main content shows
+            setTimeout(function() {
+                startMusic();
+            }, 500);
+        }
+
+        // Flight Countdown Timer
         function updateCountdown() {
             const targetDate = new Date('2025-11-07T19:55:00+02:00').getTime();
             const now = new Date().getTime();
@@ -314,6 +407,44 @@
         // Update countdown every second
         setInterval(updateCountdown, 1000);
         updateCountdown();
+
+        // Music Player Functionality
+        const music = document.getElementById('backgroundMusic');
+        const playBtn = document.getElementById('playBtn');
+        let isMusicPlaying = false;
+
+        function startMusic() {
+            // Try to play music automatically (may not work on all devices due to autoplay policies)
+            const playPromise = music.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(function() {
+                    // Autoplay started successfully
+                    isMusicPlaying = true;
+                    playBtn.textContent = '⏸️';
+                }).catch(function(error) {
+                    // Autoplay was prevented - wait for user interaction
+                    console.log("Autoplay prevented. Music will start when user clicks play.");
+                    playBtn.textContent = '▶️';
+                });
+            }
+        }
+
+        // Play/Pause button functionality
+        playBtn.addEventListener('click', function() {
+            if (isMusicPlaying) {
+                music.pause();
+                playBtn.textContent = '▶️';
+                isMusicPlaying = false;
+            } else {
+                music.play();
+                playBtn.textContent = '⏸️';
+                isMusicPlaying = true;
+            }
+        });
+
+        // Set music volume (so it's not too loud)
+        music.volume = 0.3;
 
         // Floating hearts effect
         function createHeart() {
